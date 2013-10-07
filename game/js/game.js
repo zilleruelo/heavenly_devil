@@ -29,12 +29,22 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
+// Bullet image
+var bulletReady = false;
+var bulletImage = new Image();
+bulletImage.onload = function () {
+	bulletReady = true;
+};
+bulletImage.src = "images/bullet.png";
+
 // Game objects
 var hero = {
 	speed: 256 // movement in pixels per second
 };
 var monster = {};
 var monstersCaught = 0;
+
+var bullet = {};
 
 // Handle keyboard controls
 var keysDown = {};
@@ -72,12 +82,18 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 
+	//Spacebar bullet shot
+	if (32 in keysDown) { // Player holding right
+		bullet.x = hero.x;
+		bullet.y = hero.y;
+	}
+
 	// Are they touching?
 	if (
-		hero.x <= (monster.x + 32)
-		&& monster.x <= (hero.x + 32)
-		&& hero.y <= (monster.y + 32)
-		&& monster.y <= (hero.y + 32)
+		bullet.x <= (monster.x + 32)
+		&& monster.x <= (bullet.x + 32)
+		&& bullet.y <= (monster.y + 32)
+		&& monster.y <= (bullet.y + 32)
 	) {
 		++monstersCaught;
 		reset();
@@ -96,6 +112,10 @@ var render = function () {
 
 	if (monsterReady) {
 		ctx.drawImage(monsterImage, monster.x, monster.y);
+	}
+
+	if (bulletReady) {
+		ctx.drawImage(bulletImage, bullet.x, bullet.y);
 	}
 
 	// Score
