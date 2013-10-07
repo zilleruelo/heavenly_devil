@@ -86,7 +86,10 @@ var update = function (modifier) {
 	if (32 in keysDown) { // Player holding right
 		bullet.x = hero.x;
 		bullet.y = hero.y;
+
 	}
+	//move bullet
+	bullet.x += hero.speed * modifier;
 
 	// Are they touching?
 	if (
@@ -119,13 +122,13 @@ var render = function () {
 	}
 
 	// Score
-	ctx.fillStyle = "rgb(250, 250, 250)";
-	ctx.font = "24px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+	ctx.fillStyle = "rgb(250, 250, 250)";
 	ctx.font = "36px Times New Roman";
-	ctx.fillText("otro texto" + monstersCaught, 32, 64);
+	ctx.fillText("1973", 32, 32);
+	ctx.font = "24px Helvetica";
+	ctx.fillText("Death count: " + monstersCaught, 32, 80);
 };
 
 // The main game loop
