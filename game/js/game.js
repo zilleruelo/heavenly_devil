@@ -11,7 +11,7 @@ var bgImage = new Image();
 bgImage.onload = function () {
 	bgReady = true;
 };
-bgImage.src = "images/background.png";
+bgImage.src = "images/background_01.png";
 
 // Hero image
 var heroReady = false;
@@ -89,7 +89,7 @@ var update = function (modifier) {
 
 	}
 	//move bullet
-	bullet.x += hero.speed * modifier;
+	bullet.y -= hero.speed * modifier;
 
 	// Are they touching?
 	if (
