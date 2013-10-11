@@ -146,3 +146,7 @@ var main = function () {
 reset();
 var then = Date.now();
 setInterval(main, 1); // Execute as fast as possible
+
+
+//var snd = new Audio("file.wav"); // buffers automatically when created
+//snd.play();
