@@ -37,6 +37,14 @@ bulletImage.onload = function () {
 };
 bulletImage.src = "images/bullet.png";
 
+// Monster_Bullet image
+var monster_bulletReady = false;
+var monster_bulletImage = new Image();
+monster_bulletImage.onload = function () {
+	monster_bulletReady = true;
+};
+monster_bulletImage.src = "images/monster_bullet.png";
+
 // Game objects
 var hero = {
 	speed: 256 // movement in pixels per second
@@ -45,6 +53,7 @@ var monster = {};
 var monstersCaught = 0;
 
 var bullet = {};
+var monster_bullet = {};
 
 // Handle keyboard controls
 var keysDown = {};
@@ -83,13 +92,24 @@ var update = function (modifier) {
 	}
 
 	//Spacebar bullet shot
-	if (32 in keysDown) { // Player holding right
+	if (32 in keysDown) { // Spacebar
 		bullet.x = hero.x;
 		bullet.y = hero.y;
 
 	}
 	//move bullet
 	bullet.y -= hero.speed * modifier;
+
+	//move monster
+	monster.x -= hero.speed * modifier / 6;
+	/*
+	if (monster.x < 10) {
+		monster.x -= hero.speed * modifier / 4;
+	}
+	if (monster.x > 500) {
+		monster.x += hero.speed * modifier / 4;
+	}
+	*/
 
 	// Are they touching?
 	if (
